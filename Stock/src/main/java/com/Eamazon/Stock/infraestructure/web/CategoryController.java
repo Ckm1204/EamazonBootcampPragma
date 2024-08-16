@@ -1,4 +1,4 @@
 package com.Eamazon.Stock.infraestructure.web;
 
-public class CategoryController {
+public interface CategoryController {
 }
