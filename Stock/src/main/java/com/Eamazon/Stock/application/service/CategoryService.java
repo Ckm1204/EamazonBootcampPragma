@@ -10,13 +10,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 @Service
-@AllArgsConstructor
+
 @Transactional
 public class CategoryService implements ICategoryService {
 
 
     private final CategoryMapper mapper;
     private final ICategoryServicePort categoryServicePort;
+
+    public CategoryService(CategoryMapper mapper, ICategoryServicePort categoryServicePort) {
+        this.mapper = mapper;
+        this.categoryServicePort = categoryServicePort;
+    }
+
 
     @Override
     public void saveCategoryInStock(CategoryRequestDTO categoryDto) {

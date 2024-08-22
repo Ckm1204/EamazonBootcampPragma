@@ -18,12 +18,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@RequiredArgsConstructor
+
 public class BeanConfiguration {
 
     private final ICategoryRepository categoryRepository;
-
     private final CategoryMapperJPA categoryEntityMapper;
+
+    public BeanConfiguration(ICategoryRepository categoryRepository, CategoryMapperJPA categoryEntityMapper) {
+        this.categoryRepository = categoryRepository;
+        this.categoryEntityMapper = categoryEntityMapper;
+    }
 
     @Bean
     public ICategoryPersistencePort categoryPersistencePort() {
