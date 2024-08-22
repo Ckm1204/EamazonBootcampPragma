@@ -10,4 +10,5 @@ public interface ICategoryServicePort {
 
     List<CategoryModel> getAllCategories();
 
+
 }

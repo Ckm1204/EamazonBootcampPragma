@@ -1,6 +1,8 @@
 package com.Eamazon.Stock.infraestructure.exceptionService;
 
 import com.Eamazon.Stock.infraestructure.exception.CategoryNameAlreadyExistException;
+import com.Eamazon.Stock.infraestructure.exception.DescriptionTooLongException;
+import com.Eamazon.Stock.infraestructure.exception.NameTooLongException;
 import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,20 @@ public class ControllerAdvisor {
             NoDataFoundException noDataFoundException) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(Collections.singletonMap(MESSAGE, ExceptionCategoryResponse.NO_DATA_FOUND.getMessage()));
+    }
+
+    @ExceptionHandler(NameTooLongException.class)
+    public ResponseEntity<Map<String, String>> handleNameTooLongException(
+            NameTooLongException nameTooLongException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionCategoryResponse.NAME_TOO_LONG.getMessage()));
+    }
+
+    @ExceptionHandler(DescriptionTooLongException.class)
+    public ResponseEntity<Map<String, String>> handleDescriptionTooLongException(
+            DescriptionTooLongException descriptionTooLongException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionCategoryResponse.DESCRIPTION_TOO_LONG.getMessage()));
     }
 
 

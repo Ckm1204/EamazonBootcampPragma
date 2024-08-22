@@ -7,13 +7,15 @@ import com.Eamazon.Stock.infraestructure.out.jpa.mapper.CategoryMapperJPA;
 import com.Eamazon.Stock.domain.model.CategoryModel;
 import com.Eamazon.Stock.domain.spi.ICategoryPersistencePort;
 import com.Eamazon.Stock.infraestructure.out.jpa.repository.ICategoryRepository;
-import lombok.RequiredArgsConstructor;
 
 import com.Eamazon.Stock.infraestructure.exception.CategoryIdAlreadyExistException;
 import com.Eamazon.Stock.infraestructure.exception.CategoryNameAlreadyExistException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-
+import java.util.Optional;
 
 
 public class CategoryJpaAdapter implements ICategoryPersistencePort {
@@ -46,4 +48,19 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         }
         return categoryMapper.toCategoryList(categoryEntityList);
     }
+
+
+    @Override
+    public Page<CategoryModel> getCategoriesPage(PageRequest pageRequest) {
+        return categoryRepository.findAll(pageRequest)
+                .map(categoryMapper::toCategoryModel);
+    }
+
+    @Override
+    public Optional<CategoryModel> findByName(String name) {
+        return categoryRepository.findByName(name)
+                .map(categoryMapper::toCategoryModel);
+    }
+
+
 }

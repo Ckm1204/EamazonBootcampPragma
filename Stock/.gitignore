@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Exception for the specific path
+!src/main/java/com/Eamazon/Stock/infraestructure/out/
