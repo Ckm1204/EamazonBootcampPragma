@@ -1,16 +1,13 @@
 // src/main/java/com/Eamazon/Stock/application/dto/CategoryDTO.java
-package com.Eamazon.Stock.application.dto;
+package com.Eamazon.Stock.application.dto.request;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class CategoryDTO {
+
+public class CategoryRequestDTO {
     private Integer id;
     private String name;
     private String description;
