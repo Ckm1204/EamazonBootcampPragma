@@ -11,11 +11,6 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@RequiredArgsConstructor
 @Table(name = "Category")
 public class Category {
 
@@ -52,6 +47,27 @@ public class Category {
         updatedAt = LocalDateTime.now();
     }
 
+    public Integer getId() {
+        return id;
+    }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
+    public @Size(min = 3, max = 50) String getName() {
+        return name;
+    }
+
+    public void setName(@Size(min = 3, max = 50) String name) {
+        this.name = name;
+    }
+
+    public @Size(min = 3, max = 90) String getDescription() {
+        return description;
+    }
+
+    public void setDescription(@Size(min = 3, max = 90) String description) {
+        this.description = description;
+    }
 }

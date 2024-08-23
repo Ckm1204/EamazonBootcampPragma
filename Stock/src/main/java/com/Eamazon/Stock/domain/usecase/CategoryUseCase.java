@@ -26,9 +26,9 @@ public class CategoryUseCase implements ICategoryServicePort {
             throw new DescriptionTooLongException();
         } else if (categoryPersistencePort.findByName(categoryModel.getName()).isPresent()) {
             throw new CategoryNameAlreadyExistException();
+        }else {
+            categoryPersistencePort.createCategory(categoryModel);
         }
-        categoryPersistencePort.createCategory(categoryModel);
-
     }
 
     @Override

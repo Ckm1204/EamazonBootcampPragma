@@ -12,6 +12,7 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 
 public interface CategoryMapperJPA {
+
     Category toCategory(CategoryModel categoryModel);
     CategoryModel toCategoryModel(Category category);
     List<CategoryModel> toCategoryList(List<Category> categoryList);
