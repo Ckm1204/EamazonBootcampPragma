@@ -10,7 +10,7 @@ import com.Eamazon.Stock.infraestructure.out.jpa.repository.ICategoryRepository;
 import com.Eamazon.Stock.infraestructure.exception.CategoryNameAlreadyExistException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +26,6 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         this.categoryRepository = categoryRepository;
         this.categoryMapper = categoryMapper;
     }
-
 
 
     @Override
@@ -45,7 +44,6 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         return categoryMapper.toCategoryList(categoryEntityList);
     }
 
-
     @Override
     public Page<CategoryModel> getCategoriesPage(PageRequest pageRequest) {
         return categoryRepository.findAll(pageRequest)
@@ -57,6 +55,4 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         return categoryRepository.findByName(name)
                 .map(categoryMapper::toCategoryModel);
     }
-
-
 }
