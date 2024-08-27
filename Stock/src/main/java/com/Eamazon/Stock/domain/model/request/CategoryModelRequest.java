@@ -1,8 +1,8 @@
-package com.Eamazon.Stock.domain.model;
+package com.Eamazon.Stock.domain.model.request;
 
 
-public class CategoryModel {
-    //private Integer id;
+public class CategoryModelRequest {
+
     private String name;
     private String description;
 

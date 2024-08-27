@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
-public class CategoryRestControllerTest {
+class CategoryRestControllerTest {
 
     @Mock
     private CategoryService categoryService;
@@ -30,7 +30,7 @@ public class CategoryRestControllerTest {
     }
 
     @Test
-    public void testSaveCategoryInStock() {
+    void testSaveCategoryInStock() {
         CategoryRequestDTO categoryRequestDTO = new CategoryRequestDTO();
         doNothing().when(categoryService).saveCategoryInStock(categoryRequestDTO);
 

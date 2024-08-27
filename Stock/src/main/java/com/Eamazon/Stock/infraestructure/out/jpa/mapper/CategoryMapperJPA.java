@@ -1,6 +1,7 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.mapper;
 
-import com.Eamazon.Stock.domain.model.CategoryModel;
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
+import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -13,8 +14,10 @@ import java.util.List;
 
 public interface CategoryMapperJPA {
 
-    Category toCategory(CategoryModel categoryModel);
-    CategoryModel toCategoryModel(Category category);
-    List<CategoryModel> toCategoryList(List<Category> categoryList);
+
+    Category toCategory(CategoryModelRequest categoryModelRequest);
+    CategoryModelRequest toCategoryModel(Category category);
+    CategoryModelResponse toCategoryModelResponse(Category category);
+    List<CategoryModelResponse> toCategoryList(List<Category> categoryList);
 
 }

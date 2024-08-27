@@ -1,16 +1,16 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.adapter;
 
 
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
+import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import com.Eamazon.Stock.infraestructure.out.jpa.mapper.CategoryMapperJPA;
-import com.Eamazon.Stock.domain.model.CategoryModel;
 import com.Eamazon.Stock.domain.spi.ICategoryPersistencePort;
 import com.Eamazon.Stock.infraestructure.out.jpa.repository.ICategoryRepository;
 import com.Eamazon.Stock.infraestructure.exception.CategoryNameAlreadyExistException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,14 +30,14 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
 
 
     @Override
-    public void createCategory(CategoryModel categoryModel) {
-        if (categoryRepository.findByName(categoryModel.getName()).isPresent()) {
+    public void createCategory(CategoryModelRequest categoryModelRequest) {
+        if (categoryRepository.findByName(categoryModelRequest.getName()).isPresent()) {
             throw new CategoryNameAlreadyExistException();
-        } else categoryRepository.save(categoryMapper.toCategory(categoryModel));
+        } else categoryRepository.save(categoryMapper.toCategory(categoryModelRequest));
     }
 
     @Override
-    public List<CategoryModel> getAllCategories() {
+    public List<CategoryModelResponse> getAllCategories() {
         List<Category> categoryEntityList = categoryRepository.findAll();
         if (categoryEntityList.isEmpty()) {
             throw new NoDataFoundException();
@@ -47,13 +47,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
 
 
     @Override
-    public Page<CategoryModel> getCategoriesPage(PageRequest pageRequest) {
-        return categoryRepository.findAll(pageRequest)
-                .map(categoryMapper::toCategoryModel);
-    }
-
-    @Override
-    public Optional<CategoryModel> findByName(String name) {
+    public Optional<CategoryModelRequest> findByName(String name) {
         return categoryRepository.findByName(name)
                 .map(categoryMapper::toCategoryModel);
     }
