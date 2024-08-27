@@ -1,7 +1,7 @@
 // src/test/java/com/Eamazon/Stock/domain/usecase/CategoryUseCaseTest.java
 package com.Eamazon.Stock.domain.useCase;
 
-import com.Eamazon.Stock.domain.model.CategoryModel;
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.domain.spi.ICategoryPersistencePort;
 import com.Eamazon.Stock.domain.usecase.CategoryUseCase;
 import com.Eamazon.Stock.infraestructure.exception.*;
@@ -36,44 +36,44 @@ class CategoryUseCaseTest {
 
     @Test
     void saveCategory_ShouldThrowNameTooLongException() {
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName("A very long category name that exceeds the limit of 50 characters");
-        categoryModel.setDescription("Description");
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
+        categoryModelRequest.setName("A very long category name that exceeds the limit of 50 characters");
+        categoryModelRequest.setDescription("Description");
 
-        assertThrows(NameTooLongException.class, () -> categoryUseCase.saveCategory(categoryModel));
+        assertThrows(NameTooLongException.class, () -> categoryUseCase.saveCategory(categoryModelRequest));
     }
 
     @Test
     void saveCategory_ShouldThrowDescriptionTooLongException() {
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName("Valid Name");
-        categoryModel.setDescription("A very long description that exceeds the limit of 90 characters. This description is too long.");
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
+        categoryModelRequest.setName("Valid Name");
+        categoryModelRequest.setDescription("A very long description that exceeds the limit of 90 characters. This description is too long.");
 
-        assertThrows(DescriptionTooLongException.class, () -> categoryUseCase.saveCategory(categoryModel));
+        assertThrows(DescriptionTooLongException.class, () -> categoryUseCase.saveCategory(categoryModelRequest));
     }
 
     @Test
     void saveCategory_ShouldThrowCategoryNameAlreadyExistException() {
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName("Existing Name");
-        categoryModel.setDescription("Description");
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
+        categoryModelRequest.setName("Existing Name");
+        categoryModelRequest.setDescription("Description");
 
-        when(categoryPersistencePort.findByName(categoryModel.getName())).thenReturn(Optional.of(categoryModel));
+        when(categoryPersistencePort.findByName(categoryModelRequest.getName())).thenReturn(Optional.of(categoryModelRequest));
 
-        assertThrows(CategoryNameAlreadyExistException.class, () -> categoryUseCase.saveCategory(categoryModel));
+        assertThrows(CategoryNameAlreadyExistException.class, () -> categoryUseCase.saveCategory(categoryModelRequest));
     }
 
     @Test
     void saveCategory_ShouldSaveCategory() {
-        CategoryModel categoryModel = new CategoryModel();
-        categoryModel.setName("Valid Name");
-        categoryModel.setDescription("Valid Description");
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
+        categoryModelRequest.setName("Valid Name");
+        categoryModelRequest.setDescription("Valid Description");
 
-        when(categoryPersistencePort.findByName(categoryModel.getName())).thenReturn(Optional.empty());
+        when(categoryPersistencePort.findByName(categoryModelRequest.getName())).thenReturn(Optional.empty());
 
-        categoryUseCase.saveCategory(categoryModel);
+        categoryUseCase.saveCategory(categoryModelRequest);
 
-        verify(categoryPersistencePort, times(1)).createCategory(categoryModel);
+        verify(categoryPersistencePort, times(1)).createCategory(categoryModelRequest);
     }
 
     @Test
@@ -85,10 +85,10 @@ class CategoryUseCaseTest {
 
     @Test
     void getAllCategories_ShouldReturnCategories() {
-        List<CategoryModel> categories = List.of(new CategoryModel());
+        List<CategoryModelRequest> categories = List.of(new CategoryModelRequest());
         when(categoryPersistencePort.getAllCategories()).thenReturn(categories);
 
-        List<CategoryModel> result = categoryUseCase.getAllCategories();
+        List<CategoryModelRequest> result = categoryUseCase.getAllCategories();
 
         assertEquals(categories, result);
     }
@@ -104,10 +104,10 @@ class CategoryUseCaseTest {
     @Test
     void getCategories_ShouldReturnCategoriesPage() {
         PageRequest pageRequest = PageRequest.of(0, 10);
-        Page<CategoryModel> categoriesPage = new PageImpl<>(List.of(new CategoryModel()));
+        Page<CategoryModelRequest> categoriesPage = new PageImpl<>(List.of(new CategoryModelRequest()));
         when(categoryPersistencePort.getCategoriesPage(pageRequest)).thenReturn(categoriesPage);
 
-        Page<CategoryModel> result = categoryUseCase.getCategories(pageRequest);
+        Page<CategoryModelRequest> result = categoryUseCase.getCategories(pageRequest);
 
         assertEquals(categoriesPage, result);
     }

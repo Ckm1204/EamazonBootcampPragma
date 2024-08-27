@@ -1,16 +1,14 @@
 package com.Eamazon.Stock.domain.spi;
 
-import com.Eamazon.Stock.domain.model.CategoryModel;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
+import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 
 import java.util.List;
 import java.util.Optional;
 
 public interface ICategoryPersistencePort {
-    void createCategory(CategoryModel categoryModel);
-    List<CategoryModel> getAllCategories();
-    Page<CategoryModel> getCategoriesPage(PageRequest pageRequest);
-    Optional <CategoryModel> findByName(String name)
+    void createCategory(CategoryModelRequest categoryModelRequest);
+    List<CategoryModelResponse> getAllCategories();
+    Optional <CategoryModelRequest> findByName(String name)
     ;
 }

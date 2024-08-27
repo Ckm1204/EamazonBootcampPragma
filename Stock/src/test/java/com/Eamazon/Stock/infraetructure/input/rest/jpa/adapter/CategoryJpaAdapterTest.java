@@ -1,6 +1,6 @@
 package com.Eamazon.Stock.infraetructure.input.rest.jpa.adapter;
 
-import com.Eamazon.Stock.domain.model.CategoryModel;
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import com.Eamazon.Stock.infraestructure.out.jpa.adapter.CategoryJpaAdapter;
 import com.Eamazon.Stock.infraestructure.out.jpa.mapper.CategoryMapperJPA;
@@ -35,13 +35,13 @@ class CategoryJpaAdapterTest {
 
     @Test
     void createCategory() {
-        CategoryModel categoryModel = new CategoryModel();
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
         Category categoryEntity = new Category();
 
         when(categoryRepository.findByName(any())).thenReturn(Optional.empty());
         when(categoryMapper.toCategory(any())).thenReturn(categoryEntity);
 
-        categoryJpaAdapter.createCategory(categoryModel);
+        categoryJpaAdapter.createCategory(categoryModelRequest);
 
         verify(categoryRepository, times(1)).save(categoryEntity);
     }
@@ -50,13 +50,13 @@ class CategoryJpaAdapterTest {
     void findByName() {
         String categoryName = "Electronics";
         Category categoryEntity = new Category();
-        CategoryModel categoryModel = new CategoryModel();
+        CategoryModelRequest categoryModelRequest = new CategoryModelRequest();
 
         when(categoryRepository.findByName(categoryName)).thenReturn(Optional.of(categoryEntity));
-        when(categoryMapper.toCategoryModel(categoryEntity)).thenReturn(categoryModel);
+        when(categoryMapper.toCategoryModel(categoryEntity)).thenReturn(categoryModelRequest);
 
-        Optional<CategoryModel> result = categoryJpaAdapter.findByName(categoryName);
+        Optional<CategoryModelRequest> result = categoryJpaAdapter.findByName(categoryName);
 
-        assertEquals(Optional.of(categoryModel), result);
+        assertEquals(Optional.of(categoryModelRequest), result);
     }
 }

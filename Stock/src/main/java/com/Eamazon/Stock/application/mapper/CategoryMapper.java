@@ -1,11 +1,10 @@
 package com.Eamazon.Stock.application.mapper;
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
-import com.Eamazon.Stock.domain.model.CategoryModel;
-import org.mapstruct.InheritInverseConfiguration;
+import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
+import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 
@@ -16,8 +15,8 @@ import java.util.List;
 public interface CategoryMapper {
 
 
-    CategoryRequestDTO toCategoryDTO(CategoryModel categoryModel);
-    List<CategoryRequestDTO> toCategoryDTOs(List<CategoryModel> categoriesModel);
-    CategoryModel toCategoryModel(CategoryRequestDTO categoryrequestDTO);
-    List<CategoryModel> toCategoriesModel(List<CategoryModel> categoryRequestDTOS);
+    CategoryRequestDTO toCategoryDTO(CategoryModelRequest categoryModelRequest);
+    List<CategoryRequestDTO> toCategoryDTOs(List<CategoryModelResponse> categoriesModel);
+    CategoryModelRequest toCategoryModel(CategoryRequestDTO categoryrequestDTO);
+    List<CategoryModelRequest> toCategoriesModel(List<CategoryModelRequest> categoryRequestDTOS);
 }
