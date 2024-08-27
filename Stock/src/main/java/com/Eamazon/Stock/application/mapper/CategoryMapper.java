@@ -14,12 +14,10 @@ import java.util.List;
         unmappedSourcePolicy = ReportingPolicy.IGNORE)
 
 public interface CategoryMapper {
-    CategoryMapper INSTANCE = Mappers.getMapper(CategoryMapper.class);
+
 
     CategoryRequestDTO toCategoryDTO(CategoryModel categoryModel);
     List<CategoryRequestDTO> toCategoryDTOs(List<CategoryModel> categoriesModel);
-
-    @InheritInverseConfiguration
     CategoryModel toCategoryModel(CategoryRequestDTO categoryrequestDTO);
     List<CategoryModel> toCategoriesModel(List<CategoryModel> categoryRequestDTOS);
 }
