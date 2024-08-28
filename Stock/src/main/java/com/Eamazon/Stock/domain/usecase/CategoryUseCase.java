@@ -6,8 +6,7 @@ import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.spi.ICategoryPersistencePort;
 import com.Eamazon.Stock.infraestructure.exception.*;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
+
 
 import java.util.List;
 public class CategoryUseCase implements ICategoryServicePort {

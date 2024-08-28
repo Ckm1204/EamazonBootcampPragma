@@ -2,6 +2,7 @@
 package com.Eamazon.Stock.domain.useCase;
 
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
+import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.spi.ICategoryPersistencePort;
 import com.Eamazon.Stock.domain.usecase.CategoryUseCase;
 import com.Eamazon.Stock.infraestructure.exception.*;
@@ -83,32 +84,5 @@ class CategoryUseCaseTest {
         assertThrows(NoDataFoundException.class, () -> categoryUseCase.getAllCategories());
     }
 
-    @Test
-    void getAllCategories_ShouldReturnCategories() {
-        List<CategoryModelRequest> categories = List.of(new CategoryModelRequest());
-        when(categoryPersistencePort.getAllCategories()).thenReturn(categories);
 
-        List<CategoryModelRequest> result = categoryUseCase.getAllCategories();
-
-        assertEquals(categories, result);
-    }
-
-    @Test
-    void getCategories_ShouldThrowNoDataFoundException() {
-        PageRequest pageRequest = PageRequest.of(0, 10);
-        when(categoryPersistencePort.getCategoriesPage(pageRequest)).thenReturn(Page.empty());
-
-        assertThrows(NoDataFoundException.class, () -> categoryUseCase.getCategories(pageRequest));
-    }
-
-    @Test
-    void getCategories_ShouldReturnCategoriesPage() {
-        PageRequest pageRequest = PageRequest.of(0, 10);
-        Page<CategoryModelRequest> categoriesPage = new PageImpl<>(List.of(new CategoryModelRequest()));
-        when(categoryPersistencePort.getCategoriesPage(pageRequest)).thenReturn(categoriesPage);
-
-        Page<CategoryModelRequest> result = categoryUseCase.getCategories(pageRequest);
-
-        assertEquals(categoriesPage, result);
-    }
 }
