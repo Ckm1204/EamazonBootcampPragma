@@ -1,6 +1,7 @@
 package com.Eamazon.Stock.application.service;
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
+import com.Eamazon.Stock.application.dto.response.CategoryResponsetDTO;
 import com.Eamazon.Stock.application.mapper.CategoryMapper;
 import com.Eamazon.Stock.domain.api.ICategoryServicePort;
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
@@ -34,7 +35,7 @@ public class CategoryService implements ICategoryService {
     }
 
     @Override
-    public List<CategoryRequestDTO> getAllCategoryFromStock() {
+    public List<CategoryResponsetDTO> getAllCategoryFromStock() {
 
         List<CategoryModelResponse> categories = categoryServicePort.getAllCategories();
         return mapper.toCategoryDTOs(categories);
