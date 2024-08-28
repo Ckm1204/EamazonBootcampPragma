@@ -27,6 +27,8 @@ public class CategoryRestController {
         this.categoryService = categoryService;
     }
 
+    // Add a new category
+
     @Operation(summary = "Add a new category")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category created", content = @Content),
@@ -37,6 +39,8 @@ public class CategoryRestController {
         categoryService.saveCategoryInStock(categoryRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+
+    // Get all categories paginated and sorted
 
     @Operation(
     summary = "Get paginated and sorted categories",
@@ -52,13 +56,13 @@ public class CategoryRestController {
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
     }
 )
-@GetMapping("")
-public PaginatedResponse<CategoryModelResponse> getCategories(
-        @RequestParam(defaultValue = "0") int page,
-        @RequestParam(defaultValue = "10") int size,
-        @RequestParam(defaultValue = "true") boolean ascending) {
-    return categoryService.getPaginatedAndSortedCategories(page, size, ascending);
-}
+    @GetMapping("")
+    public PaginatedResponse<CategoryModelResponse> getCategories(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "true") boolean ascending) {
+        return categoryService.getPaginatedAndSortedCategories(page, size, ascending);
+    }
 
 
 
