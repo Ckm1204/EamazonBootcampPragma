@@ -7,6 +7,7 @@ import com.Eamazon.Stock.domain.api.ICategoryServicePort;
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.paginate.NameSortingStrategy;
+import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import com.Eamazon.Stock.domain.paginate.Paginator;
 import com.Eamazon.Stock.domain.paginate.SimplePaginationStrategy;
 import org.springframework.stereotype.Service;
@@ -41,9 +42,12 @@ public class CategoryService implements ICategoryService {
         return mapper.toCategoryDTOs(categories);
     }
 
-    public List<CategoryModelResponse> getPaginatedAndSortedCategories(Integer page, Integer size, boolean ascending) {
+    public PaginatedResponse<CategoryModelResponse> getPaginatedAndSortedCategories(Integer page, Integer size, boolean ascending) {
         List<CategoryModelResponse> allItems = categoryServicePort.getAllCategories();
         Paginator<CategoryModelResponse> paginator = new Paginator<>(new SimplePaginationStrategy<>(), new NameSortingStrategy());
-        return paginator.paginateAndSort(allItems, page, size, ascending);
+        List<CategoryModelResponse> paginatedItems = paginator.paginateAndSort(allItems, page, size, ascending);
+        int totalElements = allItems.size();
+        int totalPages = (int) Math.ceil((double) totalElements / size);
+        return new PaginatedResponse<>(paginatedItems, page, size, totalElements, totalPages);
     }
 }

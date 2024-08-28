@@ -3,7 +3,6 @@ package com.Eamazon.Stock.application.dto.request;
 
 
 public class CategoryRequestDTO {
-    //private Integer id;
     private String name;
     private String description;
 

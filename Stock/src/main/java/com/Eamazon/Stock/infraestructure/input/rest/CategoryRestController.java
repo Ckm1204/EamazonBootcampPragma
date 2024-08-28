@@ -4,6 +4,7 @@ package com.Eamazon.Stock.infraestructure.input.rest;
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
 import com.Eamazon.Stock.application.service.CategoryService;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
+import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -38,11 +39,11 @@ public class CategoryRestController {
     }
 
     @Operation(summary = "Get paginated and sorted categories")
-    @GetMapping("/")
-    public List<CategoryModelResponse> getCategories(
-            @Parameter(description = "Page number", example = "0") @RequestParam(defaultValue = "0") Integer page,
-            @Parameter(description = "Page size", example = "10") @RequestParam(defaultValue = "10") Integer size,
-            @Parameter(description = "Sort order (true for ascending, false for descending)", example = "true") @RequestParam(defaultValue = "true") boolean ascending) {
+    @GetMapping("/categories")
+    public PaginatedResponse<CategoryModelResponse> getCategories(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "true") boolean ascending) {
         return categoryService.getPaginatedAndSortedCategories(page, size, ascending);
     }
 
