@@ -16,7 +16,7 @@ import java.util.List;
 public interface CategoryMapper {
 
 
-    CategoryRequestDTO toCategoryDTO(CategoryModelRequest categoryModelRequest);
+    CategoryResponsetDTO toCategoryDTO(CategoryModelResponse categoryModelResponse);
     List<CategoryResponsetDTO> toCategoryDTOs(List<CategoryModelResponse> categoriesModel);
     CategoryModelRequest toCategoryModel(CategoryRequestDTO categoryrequestDTO);
     List<CategoryModelRequest> toCategoriesModel(List<CategoryModelRequest> categoryRequestDTOS);

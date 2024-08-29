@@ -1,4 +1,4 @@
-package com.Eamazon.Stock.application.service;
+package com.Eamazon.Stock.application.service.Category;
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
 import com.Eamazon.Stock.application.dto.response.CategoryResponsetDTO;
