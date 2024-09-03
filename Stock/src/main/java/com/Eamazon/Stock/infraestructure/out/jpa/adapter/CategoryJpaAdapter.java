@@ -1,5 +1,6 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.adapter;
 
+import com.Eamazon.Stock.domain.model.request.BrandModelRequest;
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
@@ -48,5 +49,7 @@ public class CategoryJpaAdapter implements ICategoryPersistencePort {
         return categoryRepository.findByName(name)
                 .map(categoryMapper::toCategoryModel);
     }
+
+
 
 }

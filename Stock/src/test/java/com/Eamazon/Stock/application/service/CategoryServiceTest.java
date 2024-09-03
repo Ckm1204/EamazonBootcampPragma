@@ -2,6 +2,7 @@ package com.Eamazon.Stock.application.service;
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
 import com.Eamazon.Stock.application.mapper.CategoryMapper;
+import com.Eamazon.Stock.application.service.Category.CategoryService;
 import com.Eamazon.Stock.domain.api.ICategoryServicePort;
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import org.junit.jupiter.api.BeforeEach;

@@ -2,7 +2,7 @@ package com.Eamazon.Stock.infraestructure.input.rest;
 
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
-import com.Eamazon.Stock.application.service.CategoryService;
+import com.Eamazon.Stock.application.service.Category.CategoryService;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import io.swagger.v3.oas.annotations.Operation;

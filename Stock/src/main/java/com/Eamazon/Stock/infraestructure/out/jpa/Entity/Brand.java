@@ -25,7 +25,7 @@ public class Brand {
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
-    @Column(nullable = false, length = 90)
+    @Column(nullable = false, length = 120)
     private String description;
 
     @CreatedDate

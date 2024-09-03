@@ -2,7 +2,7 @@
 package com.Eamazon.Stock.infraetructure.input.rest;
 
 import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
-import com.Eamazon.Stock.application.service.CategoryService;
+import com.Eamazon.Stock.application.service.Category.CategoryService;
 import com.Eamazon.Stock.infraestructure.input.rest.CategoryRestController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -22,6 +22,14 @@ public class Paginator<T> {
         this.sortingStrategy = sortingStrategy;
     }
 
+    public PaginationStrategy<T> getPaginationStrategy() {
+        return paginationStrategy;
+    }
+
+    public SortingStrategy<T> getSortingStrategy() {
+        return sortingStrategy;
+    }
+
     public List<T> paginateAndSort(List<T> items, Integer page, Integer size, boolean ascending) {
         sortingStrategy.sort(items, ascending);
         int actualPage = (page != null) ? page : DEFAULT_PAGE;
