@@ -7,6 +7,7 @@ import com.Eamazon.Stock.domain.spi.IBrandPersistencePort;
 import com.Eamazon.Stock.infraestructure.exception.BrandNameAlreadyExistException;
 import com.Eamazon.Stock.infraestructure.exception.DescriptionTooLongException;
 import com.Eamazon.Stock.infraestructure.exception.NameTooLongException;
+import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
 
 import java.util.List;
 
@@ -32,7 +33,10 @@ public class BrandUseCase  implements IBrandServicePort {
 
     @Override
     public List<BrandModelResponse> getAllBrands() {
-        return List.of();
+        if (brandPersistencePort.getAllBrands().isEmpty()) {
+            throw new NoDataFoundException();
+        }
+            return brandPersistencePort.getAllBrands();
     }
 
 

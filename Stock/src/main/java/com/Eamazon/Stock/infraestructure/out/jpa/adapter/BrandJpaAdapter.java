@@ -4,6 +4,8 @@ import com.Eamazon.Stock.domain.model.request.BrandModelRequest;
 import com.Eamazon.Stock.domain.model.response.BrandModelResponse;
 import com.Eamazon.Stock.domain.spi.IBrandPersistencePort;
 import com.Eamazon.Stock.infraestructure.exception.BrandNameAlreadyExistException;
+import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
+import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Brand;
 import com.Eamazon.Stock.infraestructure.out.jpa.mapper.BrandMapperJPA;
 import com.Eamazon.Stock.infraestructure.out.jpa.repository.IBrandRepository;
 
@@ -29,7 +31,11 @@ public class BrandJpaAdapter implements IBrandPersistencePort {
 
     @Override
     public List<BrandModelResponse> getAllBrands() {
-        return List.of();
+        List<Brand> brandEntityList = brandRepository.findAll();
+        if (brandEntityList.isEmpty()){
+            throw new NoDataFoundException();
+        }
+        return brandMapper.toBrandList(brandEntityList);
     }
 
     @Override
