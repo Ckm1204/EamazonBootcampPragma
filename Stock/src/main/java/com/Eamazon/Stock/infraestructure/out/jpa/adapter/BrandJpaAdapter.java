@@ -38,6 +38,9 @@ public class BrandJpaAdapter implements IBrandPersistencePort {
         return brandMapper.toBrandList(brandEntityList);
     }
 
+
+
+
     @Override
     public Optional<BrandModelRequest> findByName(String name) {
         return brandRepository.findByName(name)
