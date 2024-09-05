@@ -8,8 +8,18 @@ public class BrandModelResponse implements Nameable {
     private String name;
     private String description;
 
+
     public Integer getId() {
         return id;
+    }
+
+    public BrandModelResponse() {
+        // No-argument constructor
+    }
+    public BrandModelResponse(Integer id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
     public void setId(Integer id) {
