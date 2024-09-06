@@ -15,9 +15,11 @@ import java.util.List;
 
 public interface CategoryMapper {
 
-
+    // Response
     CategoryResponsetDTO toCategoryDTO(CategoryModelResponse categoryModelResponse);
     List<CategoryResponsetDTO> toCategoryDTOs(List<CategoryModelResponse> categoriesModel);
+
+    // Request
     CategoryModelRequest toCategoryModel(CategoryRequestDTO categoryrequestDTO);
     List<CategoryModelRequest> toCategoriesModel(List<CategoryModelRequest> categoryRequestDTOS);
 }

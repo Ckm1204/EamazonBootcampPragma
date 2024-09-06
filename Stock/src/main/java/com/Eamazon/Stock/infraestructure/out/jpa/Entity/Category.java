@@ -9,6 +9,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Table(name = "Category")
@@ -46,6 +47,13 @@ public class Category {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+ // Relationships
+    @ManyToMany(mappedBy = "categories")
+    private Set<Item> items;
+
+
+
 
     public Integer getId() {
         return id;
