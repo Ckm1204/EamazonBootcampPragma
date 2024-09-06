@@ -1,9 +1,6 @@
 package com.Eamazon.Stock.infraestructure.exceptionService;
 
-import com.Eamazon.Stock.infraestructure.exception.CategoryNameAlreadyExistException;
-import com.Eamazon.Stock.infraestructure.exception.DescriptionTooLongException;
-import com.Eamazon.Stock.infraestructure.exception.NameTooLongException;
-import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
+import com.Eamazon.Stock.infraestructure.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -46,5 +43,31 @@ public class ControllerAdvisor {
                 .body(Collections.singletonMap(MESSAGE, ExceptionCategoryResponse.DESCRIPTION_TOO_LONG.getMessage()));
     }
 
+    @ExceptionHandler(BrandNameAlreadyExistException.class)
+    public ResponseEntity<Map<String, String>> serviceBrandNameAlreadyExistException(
+            BrandNameAlreadyExistException brandNameAlreadyExistException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionBrandResponse.BRAND_ALREADY_EXISTS.getMessage()));
+    }
 
+    @ExceptionHandler(ItemBetweenOneAndThreeCategoriesException.class)
+    public ResponseEntity<Map<String, String>> serviceItemBetweenOneAndThreeCategoriesException(
+            ItemBetweenOneAndThreeCategoriesException itemBetweenOneAndThreeCategoriesException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.ITEM_BETWEEN_ONE_AND_THREE_CATEGORIES.getMessage()));
+    }
+
+    @ExceptionHandler(ItemCategoriesDuplicatedException.class)
+    public ResponseEntity<Map<String, String>> serviceItemCategoriesDuplicatedException(
+            ItemCategoriesDuplicatedException itemCategoriesDuplicatedException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.ITEM_CATEGORIES_DUPLICATED.getMessage()));
+    }
+
+    @ExceptionHandler(ItemBrandNotNullException.class)
+    public ResponseEntity<Map<String, String>> serviceItemBrandNotNullException(
+            ItemBrandNotNullException itemBrandNotNullException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.ITEM_BRAND_NOT_NULL.getMessage()));
+    }
 }

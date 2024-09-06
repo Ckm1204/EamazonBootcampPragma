@@ -1,4 +1,3 @@
-// src/main/java/com/Eamazon/Stock/Domain/Entity/Brand.java
 package com.Eamazon.Stock.infraestructure.out.jpa.Entity;
 
 import jakarta.persistence.*;
@@ -10,20 +9,26 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Entity
-@Table(name = "Brand")
+@Table(name = "Item")
 @AllArgsConstructor
 @NoArgsConstructor
-public class Brand {
+public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(nullable = false, unique = true, length = 60)
     private String name;
 
     @Column(nullable = false, length = 120)
     private String description;
+
+    @Column(nullable = false)
+    private Integer quantity;
+
+    @Column(nullable = false)
+    private Double price;
 
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -32,6 +37,8 @@ public class Brand {
     @LastModifiedDate
     @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
+
+
 
     @PrePersist
     protected void onCreate() {
@@ -45,11 +52,20 @@ public class Brand {
     }
 
 
+    @ManyToOne
+    @JoinColumn(name = "brand_id", nullable = false)
+    private Brand brand;
 
+    @ManyToMany
+    @JoinTable(
+        name = "Item_Category",
+        joinColumns = @JoinColumn(name = "item_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    private Set<Category> categories;
 
-    // Relationships
-    @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Item> items;
+    // Getters and setters
+
 
     public Integer getId() {
         return id;
@@ -75,19 +91,35 @@ public class Brand {
         this.description = description;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
+    public Double getPrice() {
+        return price;
     }
 
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Brand getBrand() {
+        return brand;
+    }
+
+    public void setBrand(Brand brand) {
+        this.brand = brand;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }

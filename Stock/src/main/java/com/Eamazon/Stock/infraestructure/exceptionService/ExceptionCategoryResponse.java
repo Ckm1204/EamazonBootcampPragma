@@ -1,7 +1,6 @@
 package com.Eamazon.Stock.infraestructure.exceptionService;
 
 
-import com.Eamazon.Stock.infraestructure.exception.NameTooLongException;
 
 public enum ExceptionCategoryResponse {
 
