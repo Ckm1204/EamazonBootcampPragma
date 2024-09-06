@@ -5,10 +5,7 @@ import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.spi.IItemPersistencePort;
 import com.Eamazon.Stock.infraestructure.exception.ItemBetweenOneAndThreeCategoriesException;
 import com.Eamazon.Stock.infraestructure.exception.ItemBrandNotNullException;
-import com.Eamazon.Stock.infraestructure.exception.ItemCategoriesDuplicatedException;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ItemUseCase implements IitemServicePort {
@@ -40,13 +37,6 @@ public class ItemUseCase implements IitemServicePort {
         if (categoryIds == null || categoryIds.size() < 1 || categoryIds.size() > 3) {
             throw new ItemBetweenOneAndThreeCategoriesException();
         }
-
-        // Validar que no haya categorías duplicadas
-        Set<Integer> uniqueCategories = new HashSet<>(categoryIds);
-        if (uniqueCategories.size() != categoryIds.size()) {
-            throw new ItemCategoriesDuplicatedException();
-        }
     }
-
 
 }
