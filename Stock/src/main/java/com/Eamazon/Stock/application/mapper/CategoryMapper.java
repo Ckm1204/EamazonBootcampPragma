@@ -5,6 +5,7 @@ import com.Eamazon.Stock.application.dto.response.CategoryResponsetDTO;
 import com.Eamazon.Stock.domain.model.request.CategoryModelRequest;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import java.util.List;

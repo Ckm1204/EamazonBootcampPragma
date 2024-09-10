@@ -1,15 +1,13 @@
-package com.Eamazon.Stock.application.dto.response;
+package com.Eamazon.Stock.domain.model.response;
 
 import com.Eamazon.Stock.domain.paginate.Nameable;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
+
 
 import java.util.Set;
 
 
-@AllArgsConstructor
-@NoArgsConstructor
-public class ItemResponseDTO  {
+public class ItemModelResponse  implements Nameable {
 
     private Integer id;
     private String name;
@@ -27,6 +25,7 @@ public class ItemResponseDTO  {
         this.id = id;
     }
 
+    @Override
     public String getName() {
         return name;
     }
@@ -43,20 +42,20 @@ public class ItemResponseDTO  {
         this.description = description;
     }
 
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
     public Double getPrice() {
         return price;
     }
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
     public Set<Integer> getCategories() {

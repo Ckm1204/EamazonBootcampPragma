@@ -1,11 +1,14 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.mapper;
 
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
+import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
+
+import java.util.List;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -15,21 +18,18 @@ public interface ItemMapperJPA {
 
     ItemMapperJPA INSTANCE = Mappers.getMapper(ItemMapperJPA.class);
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "quantity", target = "quantity")
-    @Mapping(source = "price", target = "price")
     @Mapping(source = "brand", target = "brand.id")
-    @Mapping(source = "categories", target = "categories")
     Item toItem(ItemModelRequest itemModelRequest);
 
-    @Mapping(source = "name", target = "name")
-    @Mapping(source = "description", target = "description")
-    @Mapping(source = "quantity", target = "quantity")
-    @Mapping(source = "price", target = "price")
     @Mapping(source = "brand.id", target = "brand")
-    @Mapping(source = "categories", target = "categories")
     ItemModelRequest toItemModelRequest(Item item);
+
+    @Mapping(source = "brand.id", target = "brand")
+    ItemModelResponse toItemModelResponse(Item item);
+
+    @Mapping(source = "brand.id", target = "brand")
+    List<ItemModelResponse> toItemModelResponseList(List<Item> items);
+
 
     default Set<Category> mapCategoryIdsToCategories(Set<Integer> categoryIds) {
         if (categoryIds == null) {
@@ -54,4 +54,5 @@ public interface ItemMapperJPA {
         }
         return categoryIds;
     }
+
 }

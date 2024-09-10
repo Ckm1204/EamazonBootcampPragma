@@ -1,6 +1,7 @@
 package com.Eamazon.Stock.infraestructure.input.rest;
 
 import com.Eamazon.Stock.application.dto.request.ItemRequestDTO;
+import com.Eamazon.Stock.application.dto.response.ItemResponseDTO;
 import com.Eamazon.Stock.application.service.Item.ItemService;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,9 +13,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/item/")
@@ -62,5 +66,11 @@ public class ItemRestController {
             @org.springframework.web.bind.annotation.RequestBody ItemRequestDTO itemRequestDTO) {
         itemService.saveItem(itemRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+
+    @GetMapping("")
+    public List<ItemResponseDTO> getAllItems() {
+        return itemService.getAllItems();
     }
 }
