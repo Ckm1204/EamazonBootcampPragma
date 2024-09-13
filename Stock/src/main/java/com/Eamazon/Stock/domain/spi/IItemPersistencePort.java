@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface IItemPersistencePort {
     void createItem(ItemModelRequest item);
     List<ItemModelResponse> getAllItems();
-    Optional<ItemModelRequest> findByName(String name);
+    Optional<ItemModelResponse> findByName(String name);
 }

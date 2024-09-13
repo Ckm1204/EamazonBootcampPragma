@@ -23,8 +23,6 @@ public interface ItemMapperJPA {
     @Mapping(source = "brand", target = "brand.id")
     Item toItem(ItemModelRequest itemModelRequest);
 
-    @Mapping(source = "brand.id", target = "brand")
-    ItemModelRequest toItemModelRequest(Item item);
 
     @Mapping(source = "brand", target = "brand")
     ItemModelResponse toItemModelResponse(Item item);
@@ -46,14 +44,4 @@ public interface ItemMapperJPA {
         return categories;
     }
 
-    default Set<Integer> mapCategoriesToCategoryIds(Set<Category> categories) {
-        if (categories == null) {
-            return null;
-        }
-        Set<Integer> categoryIds = new HashSet<>();
-        for (Category category : categories) {
-            categoryIds.add(category.getId());
-        }
-        return categoryIds;
-    }
 }

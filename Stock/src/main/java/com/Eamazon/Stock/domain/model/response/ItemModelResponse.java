@@ -14,7 +14,7 @@ public class ItemModelResponse  implements Nameable {
     private String description;
     private Integer quantity;
     private Double price;
-    private Set<Integer> categories;
+    private Set<SimpleCategoryModelResponse> categories;
     private SimpleBrandModelResponse brand;
 
     public Integer getId() {
@@ -58,11 +58,11 @@ public class ItemModelResponse  implements Nameable {
         this.quantity = quantity;
     }
 
-    public Set<Integer> getCategories() {
+    public Set<SimpleCategoryModelResponse> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<Integer> categories) {
+    public void setCategories(Set<SimpleCategoryModelResponse> categories) {
         this.categories = categories;
     }
 
