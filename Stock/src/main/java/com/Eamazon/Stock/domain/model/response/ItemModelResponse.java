@@ -1,7 +1,7 @@
 package com.Eamazon.Stock.domain.model.response;
 
 import com.Eamazon.Stock.domain.paginate.Nameable;
-
+import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Brand;
 
 
 import java.util.Set;
@@ -15,7 +15,7 @@ public class ItemModelResponse  implements Nameable {
     private Integer quantity;
     private Double price;
     private Set<Integer> categories;
-    private Integer brand;
+    private SimpleBrandModelResponse brand;
 
     public Integer getId() {
         return id;
@@ -66,11 +66,11 @@ public class ItemModelResponse  implements Nameable {
         this.categories = categories;
     }
 
-    public Integer getBrand() {
+    public SimpleBrandModelResponse getBrand() {
         return brand;
     }
 
-    public void setBrand(Integer brand) {
+    public void setBrand(SimpleBrandModelResponse brand) {
         this.brand = brand;
     }
 }

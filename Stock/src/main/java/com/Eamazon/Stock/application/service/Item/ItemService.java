@@ -32,6 +32,8 @@ public class ItemService implements IItemService{
     public List<ItemResponseDTO> getAllItems() {
 
         List<ItemModelResponse> items = iItemServicePort.getAllItems();
+
+
         return mapper.toItemDTOs(items);
     }
 

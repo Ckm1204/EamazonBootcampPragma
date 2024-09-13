@@ -1,5 +1,7 @@
 package com.Eamazon.Stock.application.dto.response;
 
+import com.Eamazon.Stock.domain.model.response.BrandModelResponse;
+import com.Eamazon.Stock.domain.model.response.SimpleBrandModelResponse;
 import com.Eamazon.Stock.domain.paginate.Nameable;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -17,7 +19,7 @@ public class ItemResponseDTO  {
     private Integer quantity;
     private Double price;
     private Set<Integer> categories;
-    private Integer brand;
+    private SimpleBrandModelResponse brand;
 
     public Integer getId() {
         return id;
@@ -67,11 +69,11 @@ public class ItemResponseDTO  {
         this.categories = categories;
     }
 
-    public Integer getBrand() {
+    public SimpleBrandModelResponse getBrand() {
         return brand;
     }
 
-    public void setBrand(Integer brand) {
+    public void setBrand(SimpleBrandModelResponse brand) {
         this.brand = brand;
     }
 }

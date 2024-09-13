@@ -1,7 +1,10 @@
+// src/main/java/com/Eamazon/Stock/infraestructure/out/jpa/mapper/ItemMapperJPA.java
 package com.Eamazon.Stock.infraestructure.out.jpa.mapper;
 
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
+import com.Eamazon.Stock.domain.model.response.SimpleBrandModelResponse;
+import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Brand;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
 import org.mapstruct.Mapper;
@@ -13,7 +16,6 @@ import java.util.Set;
 import java.util.HashSet;
 
 @Mapper(componentModel = "spring")
-
 public interface ItemMapperJPA {
 
     ItemMapperJPA INSTANCE = Mappers.getMapper(ItemMapperJPA.class);
@@ -24,11 +26,11 @@ public interface ItemMapperJPA {
     @Mapping(source = "brand.id", target = "brand")
     ItemModelRequest toItemModelRequest(Item item);
 
-    @Mapping(source = "brand.id", target = "brand")
+    @Mapping(source = "brand", target = "brand")
     ItemModelResponse toItemModelResponse(Item item);
 
-    @Mapping(source = "brand.id", target = "brand")
     List<ItemModelResponse> toItemModelResponseList(List<Item> items);
+
 
 
     default Set<Category> mapCategoryIdsToCategories(Set<Integer> categoryIds) {
@@ -54,5 +56,4 @@ public interface ItemMapperJPA {
         }
         return categoryIds;
     }
-
 }

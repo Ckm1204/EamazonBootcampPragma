@@ -29,9 +29,11 @@ public class ItemJpaAdapter implements IItemPersistencePort {
     @Override
     public List<ItemModelResponse> getAllItems() {
         List<Item> itemEntityList = itemRepository.findAll();
+
         if (itemEntityList.isEmpty()) {
             throw new NoDataFoundException();
         }
+
         return itemMapper.toItemModelResponseList(itemEntityList);
     }
 
