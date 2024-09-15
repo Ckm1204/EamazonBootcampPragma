@@ -10,5 +10,8 @@ public interface IItemService {
 
     void saveItem(ItemRequestDTO itemdto);
     List<ItemResponseDTO> getAllItems();
+    List<ItemResponseDTO> getItemsByNameContaining(String name);
+    List<ItemResponseDTO> getItemsByBrandName(String brandName);
+    List<ItemResponseDTO> getItemsByCategoryName(String categoryName);
 
 }

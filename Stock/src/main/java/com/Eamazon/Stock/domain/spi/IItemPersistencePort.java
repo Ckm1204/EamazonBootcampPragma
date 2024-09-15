@@ -10,4 +10,7 @@ public interface IItemPersistencePort {
     void createItem(ItemModelRequest item);
     List<ItemModelResponse> getAllItems();
     Optional<ItemModelResponse> findByName(String name);
+    List<ItemModelResponse> getItemsByNameContaining(String name);
+    List<ItemModelResponse> getItemsByBrandName(String brandName);
+    List<ItemModelResponse> getItemsByCategoryName(String categoryName);
 }

@@ -36,7 +36,29 @@ public class ItemUseCase implements IitemServicePort {
         return itemPersistencePort.getAllItems();
     }
 
+    @Override
+    public List<ItemModelResponse> getItemsByNameContaining(String name) {
+        if(itemPersistencePort.getItemsByNameContaining(name).isEmpty()){
+            throw new NoDataFoundException();
+        }
+        return itemPersistencePort.getItemsByNameContaining(name);
+    }
 
+    @Override
+    public List<ItemModelResponse> getItemsByBrandName(String brandName) {
+        if(itemPersistencePort.getItemsByBrandName(brandName).isEmpty()){
+            throw new NoDataFoundException();
+        }
+        return itemPersistencePort.getItemsByBrandName(brandName);
+    }
+
+    @Override
+    public List<ItemModelResponse> getItemsByCategoryName(String categoryName) {
+        if(itemPersistencePort.getItemsByCategoryName(categoryName).isEmpty()){
+            throw new NoDataFoundException();
+        }
+        return itemPersistencePort.getItemsByCategoryName(categoryName);
+    }
 
 
     private void validateBrand(Integer brandId) {
@@ -51,5 +73,7 @@ public class ItemUseCase implements IitemServicePort {
             throw new ItemBetweenOneAndThreeCategoriesException();
         }
     }
+
+
 
 }

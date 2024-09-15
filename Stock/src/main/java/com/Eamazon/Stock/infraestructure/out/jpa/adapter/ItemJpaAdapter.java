@@ -40,7 +40,23 @@ public class ItemJpaAdapter implements IItemPersistencePort {
 
     @Override
     public Optional<ItemModelResponse> findByName(String name) {
-        return itemRepository.findByName(name)
-                .map(itemMapper::toItemModelResponse);
+        Item item = itemRepository.findByName(name);
+        return Optional.ofNullable(itemMapper.toItemModelResponse(item));
+
+    }
+    @Override
+    public List<ItemModelResponse> getItemsByNameContaining(String name) {
+        List<ItemModelResponse> items = itemMapper.toItemModelResponseList(itemRepository.findByNameContaining(name));
+        return items ;
+    }
+    @Override
+    public List<ItemModelResponse> getItemsByBrandName(String brandName) {
+        List<ItemModelResponse> items = itemMapper.toItemModelResponseList(itemRepository.findByBrandName(brandName));
+        return items;
+    }
+    @Override
+    public List<ItemModelResponse> getItemsByCategoryName(String categoryName) {
+        List<ItemModelResponse> items = itemMapper.toItemModelResponseList(itemRepository.findByCategoryName(categoryName));
+        return items;
     }
 }

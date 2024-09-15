@@ -9,4 +9,7 @@ import java.util.List;
 public interface IitemServicePort {
     public void saveItem(ItemModelRequest itemdto);
     public List<ItemModelResponse> getAllItems();
+    public List<ItemModelResponse> getItemsByNameContaining(String name);
+    public List<ItemModelResponse> getItemsByBrandName(String brandName);
+    public List<ItemModelResponse> getItemsByCategoryName(String categoryName);
 }

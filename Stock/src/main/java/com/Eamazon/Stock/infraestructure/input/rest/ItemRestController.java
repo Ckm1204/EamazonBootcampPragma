@@ -13,10 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -72,5 +69,21 @@ public class ItemRestController {
     @GetMapping("")
     public List<ItemResponseDTO> getAllItems() {
         return itemService.getAllItems();
+    }
+
+    @GetMapping("/items")
+    public List<ItemResponseDTO> getItems(@RequestParam(required = false) String name,
+                                            @RequestParam(required = false) String brandName,
+                                            @RequestParam(required = false) String categoryName) {
+
+        if (name != null) {
+            return itemService.getItemsByNameContaining(name);
+        } else if (brandName != null) {
+            return itemService.getItemsByBrandName(brandName);
+        } else if (categoryName != null) {
+            return itemService.getItemsByCategoryName(categoryName);
+        } else {
+            return itemService.getItemsByNameContaining(""); // Default to listing all items
+        }
     }
 }
