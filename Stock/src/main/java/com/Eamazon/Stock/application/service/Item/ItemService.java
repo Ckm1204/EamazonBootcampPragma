@@ -57,8 +57,8 @@ public class ItemService implements IItemService{
         return mapper.toItemDTOs(items);
     }
 
-    public PaginatedResponse<ItemModelResponse> getPaginatedAndSortedItems(Integer page, Integer size, boolean ascending) {
-        List<ItemModelResponse> allItems = iItemServicePort.getAllItems();
+    public PaginatedResponse<ItemModelResponse> getPaginatedAndSortedItems(Integer page, Integer size, boolean ascending,List<ItemResponseDTO> items ) {
+        List<ItemModelResponse> allItems = mapper.toItemModelsResponse(items);
         Paginator<ItemModelResponse> paginator = new Paginator<>(new SimplePaginationStrategy<>(), new NameSortingStrategy());
         List<ItemModelResponse> paginatedItems = paginator.paginateAndSort(allItems, page, size, ascending);
         int totalElements = allItems.size();

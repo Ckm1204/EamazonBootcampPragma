@@ -22,6 +22,7 @@ public interface ItemMapper {
 
     ItemResponseDTO toItemDTO(ItemModelResponse itemModelResponse);
     List<ItemResponseDTO> toItemDTOs(List<ItemModelResponse> itemModelResponse);
+    List<ItemModelResponse> toItemModelsResponse(List<ItemResponseDTO> itemResponseDTOS);
 
 
     // Request
