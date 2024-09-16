@@ -1,11 +1,13 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.Entity;
 
+import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 
 @Entity
@@ -122,4 +124,6 @@ public class Item {
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+
+
 }

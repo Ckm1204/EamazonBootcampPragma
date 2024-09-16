@@ -50,4 +50,5 @@ public class CategoryService implements ICategoryService {
         int totalPages = (int) Math.ceil((double) totalElements / size);
         return new PaginatedResponse<>(paginatedItems, page, size, totalElements, totalPages);
     }
+
 }
