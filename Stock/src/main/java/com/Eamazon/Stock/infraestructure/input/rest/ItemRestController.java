@@ -3,7 +3,6 @@ package com.Eamazon.Stock.infraestructure.input.rest;
 import com.Eamazon.Stock.application.dto.request.ItemRequestDTO;
 import com.Eamazon.Stock.application.dto.response.ItemResponseDTO;
 import com.Eamazon.Stock.application.service.Item.ItemService;
-import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
@@ -62,6 +61,7 @@ public class ItemRestController {
             @ApiResponse(responseCode = "400", description = "Datos inválidos o faltantes", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content)
     })
+
     @PostMapping
     public ResponseEntity<Item> createItem(
             @org.springframework.web.bind.annotation.RequestBody ItemRequestDTO itemRequestDTO) {
@@ -69,27 +69,6 @@ public class ItemRestController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-
-    @GetMapping("")
-    public List<ItemResponseDTO> getAllItems() {
-        return itemService.getAllItems();
-    }
-
-    @GetMapping("/items")
-    public List<ItemResponseDTO> getItems(@RequestParam(required = false) String name,
-                                            @RequestParam(required = false) String brandName,
-                                            @RequestParam(required = false) String categoryName) {
-
-        if (name != null) {
-            return itemService.getItemsByNameContaining(name);
-        } else if (brandName != null) {
-            return itemService.getItemsByBrandName(brandName);
-        } else if (categoryName != null) {
-            return itemService.getItemsByCategoryName(categoryName);
-        } else {
-            return itemService.getItemsByNameContaining(""); // Default to listing all items
-        }
-    }
 
 
     @Operation(
@@ -106,7 +85,7 @@ public class ItemRestController {
                     @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
             }
     )
-    @GetMapping("/itemspage/")
+    @GetMapping("")
     public PaginatedResponse<ItemModelResponse> getCategories(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,

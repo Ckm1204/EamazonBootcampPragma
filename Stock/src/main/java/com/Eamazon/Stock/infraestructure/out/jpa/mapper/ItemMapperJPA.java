@@ -3,8 +3,6 @@ package com.Eamazon.Stock.infraestructure.out.jpa.mapper;
 
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
-import com.Eamazon.Stock.domain.model.response.SimpleBrandModelResponse;
-import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Brand;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Category;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
 import org.mapstruct.Mapper;
