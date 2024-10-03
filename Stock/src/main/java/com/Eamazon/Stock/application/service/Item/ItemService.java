@@ -6,7 +6,6 @@ import com.Eamazon.Stock.application.mapper.ItemMapper;
 import com.Eamazon.Stock.domain.api.IitemServicePort;
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
-import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.domain.paginate.NameSortingStrategy;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import com.Eamazon.Stock.domain.paginate.Paginator;

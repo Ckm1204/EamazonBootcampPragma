@@ -8,6 +8,7 @@ import com.Eamazon.Stock.domain.model.response.BrandModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -21,8 +22,8 @@ public class BrandRestController {
     }
 
     // Add a new brand
-
-    @PostMapping("")
+    @PreAuthorize("hasRole('ADMIN')")
+    @PostMapping("create")
     public ResponseEntity<Void> saveBrandInStock(@RequestBody BrandRequestDTO brandRequestDTO) {
         brandService.saveBrandInStock(brandRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
