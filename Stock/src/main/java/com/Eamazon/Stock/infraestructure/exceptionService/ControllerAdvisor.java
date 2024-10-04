@@ -70,4 +70,17 @@ public class ControllerAdvisor {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.ITEM_BRAND_NOT_NULL.getMessage()));
     }
+    @ExceptionHandler(StockNotNegativeException.class)
+    public ResponseEntity<Map<String, String>> serviceStockException(
+            StockNotNegativeException stockNotNegativeException) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.STOCK_EXCEPTION.getMessage()));
+    }
+
+    @ExceptionHandler(StockIdNotExistException.class)
+    public ResponseEntity<Map<String, String>> serviceStockIdNotExistException(
+            StockIdNotExistException stockIdNotExistException) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body(Collections.singletonMap(MESSAGE, ExceptionItemResponse.ITEM_NOT_FOUND.getMessage()));
+    }
 }

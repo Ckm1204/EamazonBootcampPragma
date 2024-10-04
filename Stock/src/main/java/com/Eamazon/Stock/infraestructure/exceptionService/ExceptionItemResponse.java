@@ -9,7 +9,8 @@ public enum ExceptionItemResponse {
         DESCRIPTION_TOO_LONG("The description is too long"),
         ITEM_BETWEEN_ONE_AND_THREE_CATEGORIES("The item must have between 1 and 3 categories"),
         ITEM_CATEGORIES_DUPLICATED("The item has duplicated categories"),
-        ITEM_BRAND_NOT_NULL("The item must have a brand")
+        ITEM_BRAND_NOT_NULL("The item must have a brand"),
+        STOCK_EXCEPTION("The stock must be greater than 0")
         ;
         private String message;
 

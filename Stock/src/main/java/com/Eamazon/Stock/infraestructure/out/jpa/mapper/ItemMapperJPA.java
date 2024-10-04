@@ -10,6 +10,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.HashSet;
 
@@ -24,6 +25,10 @@ public interface ItemMapperJPA {
 
     @Mapping(source = "brand", target = "brand")
     ItemModelResponse toItemModelResponse(Item item);
+
+    @Mapping(source = "brand", target = "brand")
+
+
 
     List<ItemModelResponse> toItemModelResponseList(List<Item> items);
 

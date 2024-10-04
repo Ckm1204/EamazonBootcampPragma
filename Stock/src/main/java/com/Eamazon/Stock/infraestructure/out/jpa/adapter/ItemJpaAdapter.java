@@ -1,5 +1,6 @@
 package com.Eamazon.Stock.infraestructure.out.jpa.adapter;
 
+import com.Eamazon.Stock.application.dto.request.AddStock;
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.domain.spi.IItemPersistencePort;
@@ -20,6 +21,21 @@ public class ItemJpaAdapter implements IItemPersistencePort {
         this.itemRepository = itemRepository;
         this.itemMapper = itemMapper;
     }
+
+    @Override
+    public boolean existsById(Integer itemId) {
+        return itemRepository.existsById(itemId);
+    }
+
+    @Override
+    public void addStock(Integer itemId, AddStock quantity) {
+        Item item = getItemFromOptional(itemRepository.findById(itemId));
+        item.setQuantity(item.getQuantity() + quantity.getQuantity());
+        itemRepository.save(item);
+
+
+    }
+
 
     @Override
     public void createItem(ItemModelRequest item) {
@@ -59,4 +75,10 @@ public class ItemJpaAdapter implements IItemPersistencePort {
         List<ItemModelResponse> items = itemMapper.toItemModelResponseList(itemRepository.findByCategoryName(categoryName));
         return items;
     }
+
+    public Item getItemFromOptional(Optional<Item> optionalItem) {
+        return optionalItem.orElseThrow(() -> new NoDataFoundException());
+    }
+
+
 }

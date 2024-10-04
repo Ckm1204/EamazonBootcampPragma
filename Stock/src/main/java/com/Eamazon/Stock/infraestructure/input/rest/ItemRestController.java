@@ -5,6 +5,7 @@ import com.Eamazon.Stock.application.dto.response.ItemResponseDTO;
 import com.Eamazon.Stock.application.service.Item.ItemService;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
+import com.Eamazon.Stock.infraestructure.input.rest.role.RolePermissionConstants;
 import com.Eamazon.Stock.infraestructure.out.jpa.Entity.Item;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -61,7 +63,7 @@ public class ItemRestController {
             @ApiResponse(responseCode = "400", description = "Datos inválidos o faltantes", content = @Content),
             @ApiResponse(responseCode = "500", description = "Error interno del servidor", content = @Content)
     })
-
+    @PreAuthorize(RolePermissionConstants.HAS_ROLE_ADMIN)
     @PostMapping
     public ResponseEntity<Item> createItem(
             @org.springframework.web.bind.annotation.RequestBody ItemRequestDTO itemRequestDTO) {
