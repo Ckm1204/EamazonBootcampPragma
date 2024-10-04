@@ -1,14 +1,14 @@
 package com.Eamazon.Stock.domain.usecase;
 
+import com.Eamazon.Stock.application.dto.request.AddStock;
 import com.Eamazon.Stock.domain.api.IitemServicePort;
 import com.Eamazon.Stock.domain.model.request.ItemModelRequest;
 import com.Eamazon.Stock.domain.model.response.ItemModelResponse;
 import com.Eamazon.Stock.domain.spi.IItemPersistencePort;
-import com.Eamazon.Stock.infraestructure.exception.ItemBetweenOneAndThreeCategoriesException;
-import com.Eamazon.Stock.infraestructure.exception.ItemBrandNotNullException;
-import com.Eamazon.Stock.infraestructure.exception.NoDataFoundException;
+import com.Eamazon.Stock.infraestructure.exception.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class ItemUseCase implements IitemServicePort {
@@ -20,6 +20,19 @@ public class ItemUseCase implements IitemServicePort {
         this.itemPersistencePort = itemPersistencePort;
     }
 
+
+    @Override
+    public void addStock( AddStock addStockQuantity) {
+        // Validar que la cantidad de stock sea mayor a 0
+        validateStock(addStockQuantity.getQuantity());
+
+        // Validar que el artículo exista
+        validateItemExistence(addStockQuantity.getId());
+
+        itemPersistencePort.addStock(addStockQuantity.getId(), addStockQuantity);
+
+
+    }
 
     @Override
     public void saveItem(ItemModelRequest item) {
@@ -74,6 +87,17 @@ public class ItemUseCase implements IitemServicePort {
         }
     }
 
-
+    private void validateStock(int quantity) {
+        // Validar que la cantidad de stock sea mayor a 0
+        if (quantity <= 0) {
+            throw new StockNotNegativeException();
+        }
+    }
+    private void validateItemExistence(Integer itemId) {
+        // Validar que el artículo exista
+        if (!itemPersistencePort.existsById(itemId)) {
+            throw new StockIdNotExistException();
+        }
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.Eamazon.Stock.application.service.Item;
 
+import com.Eamazon.Stock.application.dto.request.AddStock;
 import com.Eamazon.Stock.application.dto.request.ItemRequestDTO;
 import com.Eamazon.Stock.application.dto.response.ItemResponseDTO;
 import com.Eamazon.Stock.application.mapper.ItemMapper;
@@ -63,6 +64,11 @@ public class ItemService implements IItemService{
         int totalElements = allItems.size();
         int totalPages = (int) Math.ceil((double) totalElements / size);
         return new PaginatedResponse<>(paginatedItems, page, size, totalElements, totalPages);
+    }
+
+    @Override
+    public void addStock(AddStock addStock) {
+        iItemServicePort.addStock(addStock);
     }
 
 

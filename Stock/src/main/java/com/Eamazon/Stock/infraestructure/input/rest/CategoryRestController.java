@@ -5,6 +5,7 @@ import com.Eamazon.Stock.application.dto.request.CategoryRequestDTO;
 import com.Eamazon.Stock.application.service.Category.CategoryService;
 import com.Eamazon.Stock.domain.model.response.CategoryModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
+import com.Eamazon.Stock.infraestructure.input.rest.role.RolePermissionConstants;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -34,6 +36,7 @@ public class CategoryRestController {
             @ApiResponse(responseCode = "201", description = "Category created", content = @Content),
             @ApiResponse(responseCode = "409", description = "Category already exists", content = @Content)
     })
+    @PreAuthorize(RolePermissionConstants.HAS_ROLE_ADMIN)
     @PostMapping("")
     public ResponseEntity<Void> saveCategoryInStock(@RequestBody CategoryRequestDTO categoryRequestDTO) {
         categoryService.saveCategoryInStock(categoryRequestDTO);

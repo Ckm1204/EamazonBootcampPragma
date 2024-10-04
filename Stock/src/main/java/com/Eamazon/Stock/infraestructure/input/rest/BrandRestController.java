@@ -6,6 +6,7 @@ import com.Eamazon.Stock.application.service.Brand.BrandService;
 import com.Eamazon.Stock.domain.model.request.BrandModelRequest;
 import com.Eamazon.Stock.domain.model.response.BrandModelResponse;
 import com.Eamazon.Stock.domain.paginate.PaginatedResponse;
+import com.Eamazon.Stock.infraestructure.input.rest.role.RolePermissionConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -22,8 +23,8 @@ public class BrandRestController {
     }
 
     // Add a new brand
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("create")
+    @PreAuthorize(RolePermissionConstants.HAS_ROLE_ADMIN)
+    @PostMapping("")
     public ResponseEntity<Void> saveBrandInStock(@RequestBody BrandRequestDTO brandRequestDTO) {
         brandService.saveBrandInStock(brandRequestDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();

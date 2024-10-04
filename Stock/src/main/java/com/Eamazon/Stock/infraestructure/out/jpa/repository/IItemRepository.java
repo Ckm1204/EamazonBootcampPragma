@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public interface IItemRepository extends JpaRepository<Item, Integer> {
@@ -22,6 +23,9 @@ public interface IItemRepository extends JpaRepository<Item, Integer> {
     @Query("SELECT i FROM Item i JOIN i.categories c WHERE c.name = :categoryName")
     List<Item> findByCategoryName(@Param("categoryName") String categoryName);
 
+    Optional<Item> findById(Integer id);
+
+    boolean existsById(Integer id);
 
     //List<Item> findItemsByBrandCo
 }
