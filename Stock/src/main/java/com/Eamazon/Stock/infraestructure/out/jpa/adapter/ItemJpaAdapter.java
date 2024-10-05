@@ -27,6 +27,8 @@ public class ItemJpaAdapter implements IItemPersistencePort {
         return itemRepository.existsById(itemId);
     }
 
+
+    // this method added stock to an item
     @Override
     public void addStock(Integer itemId, AddStock quantity) {
         Item item = getItemFromOptional(itemRepository.findById(itemId));

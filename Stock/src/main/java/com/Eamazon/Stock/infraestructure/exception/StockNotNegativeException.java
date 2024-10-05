@@ -4,4 +4,8 @@ public class StockNotNegativeException extends RuntimeException{
     public StockNotNegativeException() {
         super();
     }
+
+
+
+
 }
