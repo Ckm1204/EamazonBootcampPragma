@@ -4,4 +4,6 @@ public class StockIdNotExistException extends RuntimeException{
     public StockIdNotExistException() {
         super();
     }
+
+
 }
